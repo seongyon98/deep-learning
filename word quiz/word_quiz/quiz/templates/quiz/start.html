@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>퀴즈 시작</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+
+  <body>
+    <div class="quiz-container">
+      <h1>단어 퀴즈 시작</h1>
+      <p>이 퀴즈에서는 다양한 단어에 대한 뜻이나 예문을 보고, 빈칸에 들어갈 단어를 맞추는 방식으로 진행됩니다.</p>
+      <p>총 10문제이며, 각 문제마다 3번의 기회가 주어집니다. 틀린 경우 힌트를 통해 단서를 얻을 수 있습니다.</p>
+      <form action="{% url 'quiz' %}">
+        <button type="submit">문제 풀기 START</button>
+      </form>
+    </div>
+  </body>
+
+</html>
