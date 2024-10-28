@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>퀴즈</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+
+  <body>
+    <div class="quiz-container">
+      <h1>단어 퀴즈</h1>
+      <div class="question-box">
+        <p>문제
+          {{ current_question }}
+          / 10</p>
+        {% if question.type == 'definition' %}
+          <p>다음 뜻에 맞는 단어는 무엇일까요?</p>
+          <p>{{ question.content }}</p>
+        {% elif question.type == 'example' %}
+          <p>다음 빈칸에 들어갈 단어는 무엇일까요?</p>
+          <p>{{ question.content }}</p>
+          <p>
+            <strong>예문 뜻:</strong>
+            {{ word.example_meaning }}</p>
+        {% endif %}
+        <p>
+          <strong>단어 길이:</strong>
+          {{ word.word|length }}
+          글자</p>
+      </div>
+
+      <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="answer" placeholder="정답을 입력하세요">
+        <br>
+        <button type="submit">정답 확인</button>
+      </form>
+
+      {% if result %}
+        <div class="result">{{ result }}</div>
+      {% endif %}
+    </div>
+  </body>
+
+</html>
